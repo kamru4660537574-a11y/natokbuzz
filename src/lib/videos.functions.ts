@@ -87,9 +87,9 @@ export const getVideoById = createServerFn({ method: "GET" })
     return { video: video ?? null };
   });
 
-async function requireAdmin(
-  context: Awaited<ReturnType<Parameters<typeof requireSupabaseAuth>[0]>> extends never ? never : import("@/integrations/supabase/auth-middleware").SupabaseAuthContext,
-) {
+type AdminCtx = { supabase: import("@supabase/supabase-js").SupabaseClient; userId: string };
+
+async function requireAdmin(context: AdminCtx) {
   const { data: isAdmin } = await context.supabase.rpc("has_role", {
     _user_id: context.userId,
     _role: "admin",
