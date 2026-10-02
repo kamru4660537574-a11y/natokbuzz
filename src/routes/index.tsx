@@ -111,7 +111,7 @@ function Index() {
     return () => clearInterval(t);
   }, [slide]);
 
-  const h = heroes[slide];
+  const h = heroes[slide]!;
   const navItems = [
     { id: "home", label: "হোম", Icon: Home },
     { id: "explore", label: "এক্সপ্লোর", Icon: Compass },
@@ -164,10 +164,10 @@ function Index() {
         {/* Hero carousel */}
         <section className="px-4 pt-4">
           <div className="relative h-[340px] overflow-hidden rounded-[20px] border border-border"
-            onTouchStart={(e) => (touchX.current = e.touches[0].clientX)}
+            onTouchStart={(e) => (touchX.current = e.touches[0]!.clientX)}
             onTouchEnd={(e) => {
               if (touchX.current === null) return;
-              const d = e.changedTouches[0].clientX - touchX.current;
+              const d = e.changedTouches[0]!.clientX - touchX.current;
               if (Math.abs(d) > 40) setSlide((s) => (s + (d < 0 ? 1 : heroes.length - 1)) % heroes.length);
               touchX.current = null;
             }}>
