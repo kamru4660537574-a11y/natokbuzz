@@ -219,7 +219,9 @@ function Index() {
               {!notifRead && <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-primary" />}
             </button>
             <button aria-label="প্রোফাইল" onClick={() => toast.info("প্রোফাইল পেজ শীঘ্রই আসছে")} className="tap">
-              <img src="https://i.pravatar.cc/80?img=12" alt="User" className="h-9 w-9 rounded-full border-2 border-primary object-cover" />
+              <span className="grid h-9 w-9 place-items-center rounded-full border-2 border-primary bg-card">
+                <User className="h-4.5 w-4.5 text-white" />
+              </span>
             </button>
           </div>
         </header>
