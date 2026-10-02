@@ -143,6 +143,17 @@ function Index() {
   const [tab, setTab] = useState("home");
   const [query, setQuery] = useState("");
   const [myList, setMyList] = useState<string[]>([]);
+
+  // Persist "আমার তালিকা" across page navigations
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("natokbuzz-mylist");
+      if (saved) setMyList(JSON.parse(saved));
+    } catch { /* ignore */ }
+  }, []);
+  useEffect(() => {
+    try { localStorage.setItem("natokbuzz-mylist", JSON.stringify(myList)); } catch { /* ignore */ }
+  }, [myList]);
   const [showNotif, setShowNotif] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const [showUpload, setShowUpload] = useState(false);
